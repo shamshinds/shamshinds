@@ -11,9 +11,12 @@ def paths(some_dict, path=()):
             for char in var:
                 if char in " (),'":
                     var = var.replace(char, '')
-            print(var)
+            val = str(value)
+            for char in val:
+                if char in "\n":
+                    val = val.replace(char, '')
             with open("D:/Yandex/vars.txt", "a", encoding="utf-8") as file:
-                file.write(var + ' ' + str(value) + '\n')
+                file.write(var + ' ' + val + '\n')
         yield key_path
         if hasattr(value, 'items'):
             yield from paths(value, key_path)
